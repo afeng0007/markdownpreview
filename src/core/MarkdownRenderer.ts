@@ -84,6 +84,13 @@ export class MarkdownRenderer {
     .markdown-body tr { background: transparent; }
     .markdown-body img { max-width: 100%; box-sizing: content-box; }
     .markdown-body hr { border: 0; border-top: 1px solid #d0d7de; height: 0; margin: 24px 0; }
+    @media print {
+      .toolbar, .disconnected-banner { display: none !important; }
+      body { background: #fff; }
+      .content { margin: 0; padding: 0; max-width: 100%; }
+      .markdown-body { box-shadow: none; padding: 0; border-radius: 0; }
+      .markdown-body pre { border: 1px solid #ddd; }
+    }
     .toolbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: #24292e; color: #fff; padding: 8px 16px;
@@ -107,6 +114,7 @@ export class MarkdownRenderer {
   <div class="toolbar">
     <span class="file-name">${fileName}</span>
     <button onclick="location.reload()">刷新</button>
+    <button onclick="window.print()">导出PDF</button>
   </div>
   <div class="disconnected-banner" id="disconnectedBanner">连接已断开，正在尝试重连...</div>
   <div class="content">
