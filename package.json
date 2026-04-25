@@ -1,0 +1,77 @@
+{
+  "name": "markdown-preview",
+  "displayName": "Markdown Preview",
+  "description": "在浏览器中实时预览 Markdown 文件，支持语法高亮和 Mermaid 图表",
+  "version": "0.1.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdownPreview.open",
+        "title": "Markdown Preview: Open in Browser"
+      },
+      {
+        "command": "markdownPreview.stop",
+        "title": "Markdown Preview: Stop Server"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "markdownPreview.open",
+          "when": "resourceLangId == markdown",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "markdownPreview.open",
+          "when": "resourceLangId == markdown",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Markdown Preview",
+      "properties": {
+        "markdownPreview.port": {
+          "type": "number",
+          "default": 8080,
+          "description": "预览服务器端口号"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "esbuild --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node src/extension.ts",
+    "watch": "esbuild --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch src/extension.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@types/ws": "^8.5.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "github-markdown-css": "^5.9.0",
+    "highlight.js": "^11.11.0",
+    "marked": "^15.0.0",
+    "marked-highlight": "^2.2.0",
+    "mermaid": "^11.14.0",
+    "ws": "^8.18.0"
+  }
+}
