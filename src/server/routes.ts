@@ -83,7 +83,7 @@ function renderIndexPage(files: { id: string; fileName: string }[]): string {
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Markdown Preview - 文件列表</title>
+  <title>Markdown HTML Preview - 文件列表</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 600px; margin: 60px auto; background: #f6f8fa; }
     h1 { color: #24292e; }
@@ -95,8 +95,8 @@ function renderIndexPage(files: { id: string; fileName: string }[]): string {
   </style>
 </head>
 <body>
-  <h1>Markdown Preview</h1>
-  ${files.length > 0 ? `<ul>${fileList}</ul>` : '<p class="empty">暂无预览文件。在 VSCode 中打开 Markdown 文件并执行 "Markdown Preview: Open in Browser" 命令。</p>'}
+  <h1>Markdown HTML Preview</h1>
+  ${files.length > 0 ? `<ul>${fileList}</ul>` : '<p class="empty">暂无预览文件。在 VSCode 中打开 Markdown 文件并执行 "Markdown HTML Preview: Open in Browser" 命令。</p>'}
 </body>
 </html>`;
 }

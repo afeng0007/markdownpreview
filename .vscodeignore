@@ -1,0 +1,22 @@
+.vscode/**
+.vscode-test/**
+src/**
+docs/**
+.spec-workflow/**
+test-samples/**
+tsconfig.json
+esbuild.config.ts
+.gitignore
+icon.svg
+logo.html
+preview-screenshot.png
+preview-table.png
+
+# Exclude all node_modules
+node_modules/**
+
+# Only re-include runtime static assets served by Express routes
+!node_modules/mermaid/dist/mermaid.min.js
+!node_modules/highlight.js/styles/github.css
+!node_modules/github-markdown-css/github-markdown.css
+!node_modules/github-markdown-css/package.json

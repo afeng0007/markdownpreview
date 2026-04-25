@@ -1,9 +1,9 @@
 {
-  "name": "markdown-preview",
-  "displayName": "Markdown Preview",
+  "name": "markdown-html-preview",
+  "displayName": "Markdown HTML Preview",
   "description": "在浏览器中实时预览 Markdown 文件，支持语法高亮和 Mermaid 图表",
   "version": "0.1.0",
-  "publisher": "local",
+  "publisher": "afeng0007",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -12,15 +12,16 @@
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
+  "icon": "icon.png",
   "contributes": {
     "commands": [
       {
         "command": "markdownPreview.open",
-        "title": "Markdown Preview: Open in Browser"
+        "title": "Markdown HTML Preview: Open in Browser"
       },
       {
         "command": "markdownPreview.stop",
-        "title": "Markdown Preview: Stop Server"
+        "title": "Markdown HTML Preview: Stop Server"
       }
     ],
     "menus": {
@@ -40,7 +41,7 @@
       ]
     },
     "configuration": {
-      "title": "Markdown Preview",
+      "title": "Markdown HTML Preview",
       "properties": {
         "markdownPreview.port": {
           "type": "number",

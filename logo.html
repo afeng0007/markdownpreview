@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #1a1a2e; }
+  .icon { width: 128px; height: 128px; position: relative; }
+</style>
+</head>
+<body>
+<div class="icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="50%" style="stop-color:#302b63"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d2ff"/>
+      <stop offset="100%" style="stop-color:#3a7bd5"/>
+    </linearGradient>
+    <linearGradient id="codeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d2ff"/>
+      <stop offset="100%" style="stop-color:#7b68ee"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowStrong">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect x="4" y="4" width="120" height="120" rx="24" ry="24" fill="url(#bg)" stroke="url(#accent)" stroke-width="1.5"/>
+
+  <!-- Grid pattern (subtle tech feel) -->
+  <g opacity="0.06" stroke="#00d2ff" stroke-width="0.5">
+    <line x1="32" y1="4" x2="32" y2="124"/>
+    <line x1="64" y1="4" x2="64" y2="124"/>
+    <line x1="96" y1="4" x2="96" y2="124"/>
+    <line x1="4" y1="32" x2="124" y2="32"/>
+    <line x1="4" y1="64" x2="124" y2="64"/>
+    <line x1="4" y1="96" x2="124" y2="96"/>
+  </g>
+
+  <!-- Browser top bar -->
+  <rect x="20" y="18" width="88" height="8" rx="3" fill="#1e1e3f" stroke="url(#accent)" stroke-width="0.8"/>
+  <circle cx="27" cy="22" r="2" fill="#ff5f56"/>
+  <circle cx="34" cy="22" r="2" fill="#ffbd2e"/>
+  <circle cx="41" cy="22" r="2" fill="#27c93f"/>
+  <rect x="52" y="20" width="50" height="4" rx="2" fill="#0d1b2a" opacity="0.8"/>
+
+  <!-- Markdown "M" symbol -->
+  <text x="30" y="62" font-family="Consolas, monospace" font-weight="bold" font-size="36" fill="url(#codeGrad)" filter="url(#glowStrong)">M</text>
+  <text x="30" y="62" font-family="Consolas, monospace" font-weight="bold" font-size="36" fill="url(#codeGrad)" opacity="0.4" transform="translate(1,1)">M</text>
+
+  <!-- Down arrow (markdown "down") -->
+  <path d="M46 42 L46 52 L40 52 L48 62 L56 52 L50 52 L50 42 Z" fill="url(#accent)" opacity="0.7" filter="url(#glow)"/>
+
+  <!-- HTML tag brackets -->
+  <text x="58" y="62" font-family="Consolas, monospace" font-weight="bold" font-size="22" fill="#00d2ff" filter="url(#glow)" opacity="0.9">&lt;/&gt;</text>
+
+  <!-- Code lines (decorative) -->
+  <rect x="24" y="74" width="40" height="3" rx="1.5" fill="#7b68ee" opacity="0.5"/>
+  <rect x="24" y="82" width="55" height="3" rx="1.5" fill="#00d2ff" opacity="0.4"/>
+  <rect x="24" y="90" width="30" height="3" rx="1.5" fill="#3a7bd5" opacity="0.35"/>
+  <rect x="24" y="98" width="48" height="3" rx="1.5" fill="#7b68ee" opacity="0.3"/>
+  <rect x="24" y="106" width="20" height="3" rx="1.5" fill="#00d2ff" opacity="0.25"/>
+
+  <!-- Mermaid diagram mini icon -->
+  <g transform="translate(76, 72)" filter="url(#glow)">
+    <circle cx="8" cy="4" r="3" fill="none" stroke="#00d2ff" stroke-width="1.2" opacity="0.8"/>
+    <circle cx="28" cy="4" r="3" fill="none" stroke="#7b68ee" stroke-width="1.2" opacity="0.8"/>
+    <circle cx="18" cy="24" r="3" fill="none" stroke="#3a7bd5" stroke-width="1.2" opacity="0.8"/>
+    <line x1="10" y1="6" x2="16" y2="22" stroke="#00d2ff" stroke-width="0.8" opacity="0.5"/>
+    <line x1="26" y1="6" x2="20" y2="22" stroke="#7b68ee" stroke-width="0.8" opacity="0.5"/>
+    <circle cx="38" cy="24" r="3" fill="none" stroke="#00d2ff" stroke-width="1.2" opacity="0.6"/>
+    <line x1="30" y1="4" x2="36" y2="22" stroke="#3a7bd5" stroke-width="0.8" opacity="0.4"/>
+  </g>
+
+  <!-- Subtle corner accents -->
+  <path d="M4 28 L4 8 Q4 4 8 4 L28 4" fill="none" stroke="url(#accent)" stroke-width="1.5" opacity="0.4"/>
+  <path d="M124 100 L124 120 Q124 124 120 124 L100 124" fill="none" stroke="url(#accent)" stroke-width="1.5" opacity="0.4"/>
+</svg>
+</div>
+</body>
+</html>
