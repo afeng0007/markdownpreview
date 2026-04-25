@@ -2,7 +2,7 @@
   "name": "markdown-html-preview",
   "displayName": "Markdown HTML Preview",
   "description": "在浏览器中实时预览 Markdown 文件，支持语法高亮和 Mermaid 图表",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "afeng0007",
   "engines": {
     "vscode": "^1.85.0"
