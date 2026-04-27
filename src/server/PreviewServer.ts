@@ -31,14 +31,15 @@ export class PreviewServer {
       return this.currentPort!;
     }
 
+    // 先查找可用端口
+    const port = await this.findAvailablePort(preferredPort);
+    this.currentPort = port;
+
     const app = express();
-    app.use("/", createRoutes(this.registry, this.renderer, preferredPort));
+    app.use("/", createRoutes(this.registry, this.renderer, port));
 
     this.server = http.createServer(app);
     this.wsHandler.attach(this.server);
-
-    const port = await this.findAvailablePort(preferredPort);
-    this.currentPort = port;
 
     return new Promise((resolve, reject) => {
       this.server!.listen(port, () => {
