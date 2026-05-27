@@ -20,3 +20,5 @@ node_modules/**
 !node_modules/highlight.js/styles/github.css
 !node_modules/github-markdown-css/github-markdown.css
 !node_modules/github-markdown-css/package.json
+!node_modules/katex/dist/katex.min.css
+!node_modules/katex/dist/fonts/**

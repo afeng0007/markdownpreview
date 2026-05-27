@@ -1,8 +1,8 @@
 {
   "name": "markdown-html-preview",
   "displayName": "Markdown HTML Preview",
-  "description": "在浏览器中实时预览 Markdown 文件，支持语法高亮和 Mermaid 图表",
-  "version": "0.2.0",
+  "description": "在浏览器中实时预览 Markdown 文件，支持语法高亮、Mermaid 图表和数学公式",
+  "version": "0.4.0",
   "publisher": "afeng0007",
   "engines": {
     "vscode": "^1.85.0"
@@ -70,6 +70,7 @@
     "express": "^4.21.0",
     "github-markdown-css": "^5.9.0",
     "highlight.js": "^11.11.0",
+    "katex": "^0.17.0",
     "marked": "^15.0.0",
     "marked-highlight": "^2.2.0",
     "mermaid": "^11.14.0",

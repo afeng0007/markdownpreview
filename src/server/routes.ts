@@ -5,8 +5,6 @@ import * as fs from "fs";
 import * as path from "path";
 
 function findNodeModules(): string {
-  // dist/extension.js → node_modules is at ../node_modules
-  // src/server/routes.ts → node_modules is at ../../node_modules
   const candidates = [
     path.resolve(__dirname, "..", "node_modules"),
     path.resolve(__dirname, "..", "..", "node_modules"),
@@ -38,6 +36,26 @@ export function createRoutes(registry: FileRegistry, renderer: MarkdownRenderer,
   router.get("/assets/github-markdown.css", (_req: Request, res: Response) => {
     const filePath = path.join(NODE_MODULES, "github-markdown-css", "github-markdown.css");
     res.setHeader("Content-Type", "text/css");
+    fs.createReadStream(filePath).pipe(res);
+  });
+  router.get("/assets/katex.css", (_req: Request, res: Response) => {
+    const filePath = path.join(NODE_MODULES, "katex", "dist", "katex.min.css");
+    res.setHeader("Content-Type", "text/css");
+    fs.createReadStream(filePath).pipe(res);
+  });
+  router.get("/assets/fonts/:fontName", (req: Request, res: Response) => {
+    const filePath = path.join(NODE_MODULES, "katex", "dist", "fonts", req.params.fontName);
+    if (!fs.existsSync(filePath)) {
+      res.status(404).send("Not found");
+      return;
+    }
+    const ext = path.extname(req.params.fontName).toLowerCase();
+    const contentTypes: Record<string, string> = {
+      ".woff2": "font/woff2",
+      ".woff": "font/woff",
+      ".ttf": "font/ttf",
+    };
+    res.setHeader("Content-Type", contentTypes[ext] || "application/octet-stream");
     fs.createReadStream(filePath).pipe(res);
   });
 

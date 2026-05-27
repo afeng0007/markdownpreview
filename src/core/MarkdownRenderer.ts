@@ -1,6 +1,49 @@
-import { Marked } from "marked";
+import { Marked, TokenizerAndRendererExtension, Tokens } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
+import katex from "katex";
+
+const blockKatex: TokenizerAndRendererExtension = {
+  name: "blockKatex",
+  level: "block",
+  start(src: string) {
+    return src.indexOf("$$");
+  },
+  tokenizer(src: string) {
+    const match = src.match(/^\$\$([\s\S]+?)\$\$/);
+    if (match) {
+      return { type: "blockKatex", raw: match[0], text: match[1].trim() } as Tokens.Generic;
+    }
+  },
+  renderer(token: Tokens.Generic) {
+    try {
+      return "<p>" + katex.renderToString(token.text, { displayMode: true, throwOnError: false }) + "</p>";
+    } catch {
+      return "<p>" + token.text + "</p>";
+    }
+  },
+};
+
+const inlineKatex: TokenizerAndRendererExtension = {
+  name: "inlineKatex",
+  level: "inline",
+  start(src: string) {
+    return src.indexOf("$");
+  },
+  tokenizer(src: string) {
+    const match = src.match(/^\$([^\$\n]+?)\$(?!\$)/);
+    if (match) {
+      return { type: "inlineKatex", raw: match[0], text: match[1].trim() } as Tokens.Generic;
+    }
+  },
+  renderer(token: Tokens.Generic) {
+    try {
+      return katex.renderToString(token.text, { displayMode: false, throwOnError: false });
+    } catch {
+      return token.text;
+    }
+  },
+};
 
 export class MarkdownRenderer {
   private marked: Marked;
@@ -18,7 +61,8 @@ export class MarkdownRenderer {
           }
           return hljs.highlightAuto(code).value;
         },
-      })
+      }),
+      { extensions: [blockKatex, inlineKatex] }
     );
   }
 
@@ -71,6 +115,7 @@ export class MarkdownRenderer {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${fileName} - Markdown HTML Preview</title>
   <link rel="stylesheet" href="/assets/highlight.css">
+  <link rel="stylesheet" href="/assets/katex.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #f6f8fa; color: #24292e; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; }
